@@ -30,7 +30,8 @@ const isValidUrl = function(url) {
   } catch (error) {
     return false
   }
-  return true
+
+  return url.startsWith('https') || url.startsWith('http')
 }
 
 const indexOfShortUrl = function(url) {
@@ -60,6 +61,8 @@ app.post('/api/shorturl', function(req, res) {
   const index = indexOfShortUrl(url)
   const responseObj = responseShorturlObj(url, index)
   
+  console.log(url)
+
   res.json(responseObj)
 })
 
